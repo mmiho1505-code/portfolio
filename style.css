@@ -18,9 +18,16 @@
 
   --content-width: 1120px;
   --gutter: 24px;
-  --section-space: 140px;
+  --section-space: 88px;
   --header-h: 88px;
   --ease: .3s ease;
+
+  --fs-body: .9375rem;
+  --fs-lead: 1.125rem;
+  --fs-h2: clamp(1.375rem, 2.4vw, 1.75rem);
+  --fs-h3: 1.0625rem;
+  --fs-en: .9375rem;
+  --fs-caption: .75rem;
 }
 
 /* ==========================================================
@@ -33,10 +40,10 @@ body {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-ja);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;          /* 明朝は細く見えるため本文も500で読みやすく */
-  line-height: 2;
-  letter-spacing: .06em;
+  line-height: 1.9;
+  letter-spacing: .05em;
   overflow-x: hidden;
   font-variant-numeric: lining-nums;
 }
@@ -169,24 +176,24 @@ button { font: inherit; color: inherit; cursor: pointer; }
 /* ==========================================================
    Section heading（英字ラベル＋明朝の大見出し）
    ========================================================== */
-.section-head { margin-bottom: 80px; }
+.section-head { margin-bottom: 28px; }
 .section-head__en {
   display: flex;
   align-items: center;
   gap: 16px;
   font-family: var(--font-en);
-  font-size: 1.25rem;
+  font-size: var(--fs-en);
   font-weight: 500;
-  letter-spacing: .24em;
+  letter-spacing: .2em;
   color: var(--color-text-sub);
 }
 .section-head__en::before { content: ""; width: 40px; height: 1px; background: currentColor; }
 .section-head__ja {
-  margin-top: 12px;
-  font-size: clamp(2.125rem, 4.6vw, 3.75rem);
+  margin-top: 6px;
+  font-size: var(--fs-h2);
   font-weight: 500;
-  line-height: 1.4;
-  letter-spacing: .12em;
+  line-height: 1.45;
+  letter-spacing: .1em;
   color: var(--color-ink);
 }
 .section-head--center { margin-bottom: 0; text-align: center; }
@@ -371,14 +378,14 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .fv__en {
   font-family: var(--font-en);
-  font-size: 1.0625rem;
+  font-size: var(--fs-en);
   font-weight: 500;
   letter-spacing: .2em;
   color: var(--color-text-sub);
 }
 .fv__title {
   margin-top: 16px;
-  font-size: clamp(1.625rem, 3.4vw, 2.75rem);
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
   font-weight: 500;
   line-height: 1.55;
   letter-spacing: .14em;
@@ -414,7 +421,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .fv__lead {
   max-width: 36em;
   margin-top: 24px;
-  font-size: 1.0625rem;
+  font-size: var(--fs-body);
 }
 .fv__col--cta { display: grid; gap: 28px; justify-items: start; }
 .fv__free {
@@ -799,7 +806,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .study__lead {
   margin: 12px 0 24px;
-  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  font-size: var(--fs-lead);
   font-weight: 700;
   line-height: 1.7;
   letter-spacing: .08em;
@@ -875,7 +882,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .academy__hero-inner { position: relative; z-index: 1; max-width: 920px; }
 .academy__en {
   font-family: var(--font-en);
-  font-size: 1rem;
+  font-size: var(--fs-en);
   letter-spacing: .36em;
   color: rgba(255,255,255,.62);
 }
@@ -897,7 +904,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .academy__title {
   margin-top: 12px;
-  font-size: clamp(1.375rem, 2.4vw, 2rem);
+  font-size: var(--fs-h2);
   font-weight: 500;
   line-height: 1.6;
   letter-spacing: .08em;
@@ -906,7 +913,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .academy__mission {
   max-width: 36em;
   margin-top: 16px;
-  font-size: 1rem;
+  font-size: var(--fs-body);
   line-height: 1.95;
   color: rgba(255,255,255,.9);
 }
@@ -920,13 +927,13 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .academy__block { margin-top: 88px; }
 .academy__label {
   font-family: var(--font-en);
-  font-size: 1.125rem;
+  font-size: var(--fs-en);
   letter-spacing: .28em;
   color: rgba(255,255,255,.5);
 }
 .academy__h {
   margin-top: 10px;
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-size: var(--fs-h2);
   font-weight: 500;
   letter-spacing: .12em;
 }
@@ -940,7 +947,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   position: relative;
   padding: 22px 0 22px 1.4em;
   border-bottom: 1px solid rgba(255,255,255,.16);
-  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  font-size: var(--fs-lead);
   letter-spacing: .1em;
   line-height: 1.7;
 }
@@ -952,7 +959,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .academy__invite {
   margin-top: 28px;
-  font-size: 1.0625rem;
+  font-size: var(--fs-body);
   letter-spacing: .1em;
   color: rgba(255,255,255,.82);
 }
@@ -983,7 +990,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .academy__point h3 {
   position: relative;
-  font-size: 1.375rem;
+  font-size: var(--fs-h3);
   letter-spacing: .16em;
 }
 .academy__point p {
@@ -1014,7 +1021,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   color: rgba(255,255,255,.5);
 }
 .academy__curric strong {
-  font-size: 1.125rem;
+  font-size: var(--fs-h3);
   font-weight: 700;
   letter-spacing: .1em;
   line-height: 1.6;
@@ -1048,7 +1055,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   border-top: 1px solid rgba(255,255,255,.2);
 }
 .academy__faculty-name {
-  font-size: 1.125rem;
+  font-size: var(--fs-h3);
   font-weight: 700;
   letter-spacing: .1em;
 }
@@ -1089,7 +1096,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   gap: clamp(16px, 3vw, 40px);
 }
 .works__kanji {
-  font-size: clamp(2.25rem, 4.2vw, 3.25rem);
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
   font-weight: 400;
   line-height: 1;
   letter-spacing: .2em;
@@ -1097,19 +1104,19 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .works__heading h2 {
   margin-top: 6px;
-  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  font-size: var(--fs-h2);
   font-weight: 500;
   letter-spacing: .16em;
   line-height: 1.4;
 }
 .works__en {
   font-family: var(--font-en);
-  font-size: 1.125rem;
+  font-size: var(--fs-en);
   font-weight: 500;
   letter-spacing: .24em;
   color: rgba(255, 255, 255, .65);
 }
-.works__lead { margin-top: 28px; font-size: 1.0625rem; color: rgba(255, 255, 255, .88); }
+.works__lead { margin-top: 20px; font-size: var(--fs-body); color: rgba(255, 255, 255, .88); }
 .works__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1146,9 +1153,9 @@ button { font: inherit; color: inherit; cursor: pointer; }
   padding-bottom: 10px;
   border-bottom: 1px solid var(--color-ink);
 }
-.work-card__case { font-family: var(--font-en); font-size: 1.25rem; font-weight: 500; letter-spacing: .08em; }
+.work-card__case { font-family: var(--font-en); font-size: var(--fs-en); font-weight: 500; letter-spacing: .08em; }
 .work-card__category { font-size: .875rem; font-weight: 700; letter-spacing: .1em; }
-.work-card__title { margin-top: 16px; font-size: 1.125rem; font-weight: 700; line-height: 1.7; color: var(--color-ink); }
+.work-card__title { margin-top: 16px; font-size: var(--fs-h3); font-weight: 700; line-height: 1.7; color: var(--color-ink); }
 .work-card__summary { margin-top: 10px; font-size: .9375rem; line-height: 1.9; color: var(--color-text-sub); }
 .work-card__tags { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: auto; padding-top: 16px; }
 .tag { font-size: .875rem; color: var(--color-text-sub); }
@@ -1219,7 +1226,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
    ========================================================== */
 .faq__list { border-top: 1px solid var(--color-ink); }
 .faq__item { border-bottom: 1px solid var(--color-border); }
-.faq__q { font-size: 1.125rem; }
+.faq__q { font-size: var(--fs-h3); }
 .faq__btn {
   position: relative;
   display: flex;
@@ -1238,7 +1245,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   position: absolute;
   left: 0;
   font-family: var(--font-en);
-  font-size: 1.625rem;
+  font-size: var(--fs-en);
   font-weight: 500;
   color: var(--color-text-sub);
 }
@@ -1261,7 +1268,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   position: absolute;
   left: 0;
   font-family: var(--font-en);
-  font-size: 1.625rem;
+  font-size: var(--fs-en);
   font-weight: 500;
   line-height: 1.3;
   color: var(--color-ink);
@@ -1271,7 +1278,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
    6. Contact
    ========================================================== */
 .contact {
-  padding: 140px 0 48px;
+  padding: var(--section-space) 0 48px;
   overflow: hidden;
   background: var(--color-ink);
   color: #fff;
@@ -1292,7 +1299,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   bottom: -28px;
   background: var(--color-ink);
 }
-.contact__lead { max-width: 34em; margin-top: 40px; font-size: 1.0625rem; color: rgba(255, 255, 255, .9); }
+.contact__lead { max-width: 34em; margin-top: 28px; font-size: var(--fs-body); color: rgba(255, 255, 255, .9); }
 .contact__address { margin-top: 36px; font-size: .9375rem; line-height: 1.9; color: rgba(255, 255, 255, .72); }
 .sns { display: flex; flex-wrap: wrap; gap: 12px 32px; margin-top: 28px; }
 .sns__link {
@@ -1319,8 +1326,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
    ========================================================== */
 .updates__lead {
   max-width: 36em;
-  margin: -40px 0 64px;
-  font-size: 1.0625rem;
+  margin: -8px 0 40px;
+  font-size: var(--fs-body);
   line-height: 2;
 }
 .updates__grid {
@@ -1335,7 +1342,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   align-items: baseline;
   gap: 8px 12px;
   margin-bottom: 20px;
-  font-size: 1.25rem;
+  font-size: var(--fs-h3);
   font-weight: 700;
   letter-spacing: .12em;
 }
@@ -1501,7 +1508,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .status-hero .breadcrumb { margin-bottom: 56px; }
 .status-hero__en {
   font-family: var(--font-en);
-  font-size: 1.125rem;
+  font-size: var(--fs-en);
   letter-spacing: .18em;
   color: rgba(255,255,255,.7);
 }
@@ -1513,7 +1520,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .status-hero__title {
   margin-top: 8px;
-  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
   font-weight: 500;
   line-height: 1.3;
   letter-spacing: .1em;
@@ -1521,7 +1528,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .status-hero__lead {
   margin-top: 28px;
   max-width: 22em;
-  font-size: 1.125rem;
+  font-size: var(--fs-lead);
   line-height: 2;
   color: rgba(255,255,255,.88);
 }
@@ -1531,9 +1538,9 @@ button { font: inherit; color: inherit; cursor: pointer; }
   gap: 64px 80px;
   align-items: start;
 }
-.status-intro__text { display: grid; gap: 1.4em; max-width: 40em; font-size: 1.125rem; line-height: 2.1; }
+.status-intro__text { display: grid; gap: 1.4em; max-width: 40em; font-size: var(--fs-body); line-height: 2.1; }
 .status-intro__goal {
-  font-size: clamp(1.375rem, 2.4vw, 1.875rem);
+  font-size: var(--fs-h2);
   font-weight: 700;
   letter-spacing: .08em;
   line-height: 1.8;
@@ -1551,9 +1558,9 @@ button { font: inherit; color: inherit; cursor: pointer; }
   padding: 48px 0;
   border-bottom: 1px solid var(--color-border);
 }
-.status-way__num { font-family: var(--font-en); font-size: 2.25rem; color: var(--color-text-sub); }
-.status-way__title { font-size: 1.375rem; font-weight: 700; letter-spacing: .08em; color: var(--color-ink); }
-.status-consult__lead { max-width: 42em; margin-bottom: 64px; font-size: 1.125rem; line-height: 2.1; }
+.status-way__num { font-family: var(--font-en); font-size: var(--fs-en); color: var(--color-text-sub); }
+.status-way__title { font-size: var(--fs-h3); font-weight: 700; letter-spacing: .08em; color: var(--color-ink); }
+.status-consult__lead { max-width: 42em; margin-bottom: 64px; font-size: var(--fs-body); line-height: 2.1; }
 .status-steps { display: grid; gap: 0; border-top: 1px solid var(--color-ink); }
 .status-step {
   display: grid;
@@ -1562,8 +1569,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
   padding: 40px 0;
   border-bottom: 1px solid var(--color-border);
 }
-.status-step__num { font-family: var(--font-en); font-size: 2rem; line-height: 1.2; color: var(--color-text-sub); }
-.status-step__title { grid-column: 2; font-size: 1.375rem; font-weight: 700; letter-spacing: .08em; color: var(--color-ink); }
+.status-step__num { font-family: var(--font-en); font-size: var(--fs-en); line-height: 1.2; color: var(--color-text-sub); }
+.status-step__title { grid-column: 2; font-size: var(--fs-h3); font-weight: 700; letter-spacing: .08em; color: var(--color-ink); }
 .status-step p { grid-column: 2; max-width: 44em; }
 .status-worries { display: grid; gap: 0; border-top: 1px solid var(--color-ink); }
 .status-worries li {
@@ -1606,7 +1613,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   text-align: center;
 }
 .stories-hero .breadcrumb { margin-bottom: 88px; text-align: left; }
-.stories-hero__lead { margin-top: 56px; font-size: 1.0625rem; line-height: 2.1; color: rgba(255, 255, 255, .88); }
+.stories-hero__lead { margin-top: 56px; font-size: var(--fs-body); line-height: 2.1; color: rgba(255, 255, 255, .88); }
 
 .story-index { border-top: 1px solid var(--color-ink); }
 .story-index__item { border-bottom: 1px solid var(--color-border); }
@@ -1630,7 +1637,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .story-index__body { display: grid; gap: 10px; }
 .story-index__meta { display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: .875rem; color: var(--color-text-sub); letter-spacing: .1em; }
 .story-index__meta time { font-family: var(--font-en); font-size: 1.0625rem; letter-spacing: .08em; }
-.story-index__title { font-size: clamp(1.375rem, 2.6vw, 2rem); font-weight: 700; line-height: 1.5; letter-spacing: .08em; color: var(--color-ink); }
+.story-index__title { font-size: var(--fs-h2); font-weight: 700; line-height: 1.5; letter-spacing: .08em; color: var(--color-ink); }
 .story-index__summary { max-width: 40em; font-size: .9375rem; line-height: 1.95; color: var(--color-text-sub); }
 .story-index__arrow {
   position: relative;
@@ -1684,12 +1691,12 @@ button { font: inherit; color: inherit; cursor: pointer; }
   line-height: .8;
   color: var(--color-ink);
 }
-.story-hero__no-label { font-size: 1.25rem; letter-spacing: .3em; line-height: 1; margin-bottom: 16px; color: var(--color-text-sub); }
+.story-hero__no-label { font-size: var(--fs-en); letter-spacing: .3em; line-height: 1; margin-bottom: 16px; color: var(--color-text-sub); }
 .story-hero__text { padding-bottom: 8px; }
 .story-hero__series { font-size: .9375rem; font-weight: 700; letter-spacing: .2em; color: var(--color-text-sub); }
 .story-hero__title {
   margin-top: 10px;
-  font-size: clamp(2rem, 4.8vw, 3.75rem);
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
   font-weight: 500;
   line-height: 1.4;
   letter-spacing: .08em;
@@ -1714,7 +1721,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   text-align: center;
 }
 .story-epigraph blockquote p {
-  font-size: clamp(1.375rem, 3vw, 2.25rem);
+  font-size: var(--fs-h2);
   font-weight: 500;
   line-height: 1.8;
   letter-spacing: .1em;
@@ -1762,7 +1769,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   max-width: calc(760px + var(--gutter) * 2);
   margin: 0 auto;
   padding: 120px var(--gutter) 40px;
-  font-size: 1.0625rem;
+  font-size: var(--fs-body);
   line-height: 2.2;
 }
 .story-body > * + * { margin-top: 32px; }
@@ -1770,7 +1777,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   margin-top: 88px !important;
   padding-top: 28px;
   border-top: 1px solid var(--color-ink);
-  font-size: clamp(1.5rem, 3vw, 2.125rem);
+  font-size: var(--fs-h2);
   font-weight: 500;
   line-height: 1.5;
   letter-spacing: .1em;
@@ -1835,7 +1842,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .story-closing__label { font-size: 1rem; font-weight: 700; letter-spacing: .16em; }
 .story-closing__label span { margin-right: 10px; font-family: var(--font-en); font-size: 1.375rem; font-weight: 500; letter-spacing: .1em; color: var(--color-text-sub); }
-.story-closing__body { display: grid; gap: .8em; margin-top: 20px; font-size: clamp(1.125rem, 2vw, 1.3125rem); line-height: 2.1; color: var(--color-ink); }
+.story-closing__body { display: grid; gap: .8em; margin-top: 20px; font-size: var(--fs-lead); line-height: 2.1; color: var(--color-ink); }
 .story-source {
   margin-top: 80px !important;
   padding-top: 20px;
@@ -1884,7 +1891,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 /* 記事下のお問い合わせ */
 .story-cta { padding: 120px 0; background: var(--color-ink); color: #fff; }
 .story-cta__inner { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 48px 96px; }
-.story-cta__title { margin-top: 12px; font-size: clamp(1.75rem, 3.6vw, 2.75rem); font-weight: 500; line-height: 1.6; letter-spacing: .1em; }
+.story-cta__title { margin-top: 12px; font-size: var(--fs-h2); font-weight: 500; line-height: 1.6; letter-spacing: .1em; }
 .story-cta__lead { margin-top: 28px; font-size: 1.0625rem; color: rgba(255, 255, 255, .88); }
 .story-cta :focus-visible { outline-color: #fff; }
 
@@ -1994,7 +2001,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   body { font-size: 15px; }
   .u-pc { display: none; }
   .u-sp { display: inline; }
-  .section-head { margin-bottom: 48px; }
+  .section-head { margin-bottom: 28px; }
 
   /* Header / Nav (SP) */
   .header { top: 10px; right: 12px; left: 12px; height: 56px; }
@@ -2083,9 +2090,9 @@ button { font: inherit; color: inherit; cursor: pointer; }
   .status-worries li { padding: 18px 0 18px 28px; }
 
   /* FAQ */
-  .faq__q { font-size: 1.0625rem; }
+  .faq__q { font-size: var(--fs-h3); }
   .faq__btn { padding: 24px 44px 24px 44px; }
-  .faq__btn::before, .faq__a::before { font-size: 1.375rem; }
+  .faq__btn::before, .faq__a::before { font-size: var(--fs-en); }
   .faq__icon { right: 4px; width: 18px; height: 18px; }
   .faq__a { padding: 0 8px 26px 44px; }
 
@@ -2180,7 +2187,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .apply-hero .breadcrumb { margin-bottom: 28px; }
 .apply-hero__en {
   font-family: var(--font-en);
-  font-size: 1rem;
+  font-size: var(--fs-en);
   letter-spacing: .36em;
   color: rgba(255,255,255,.62);
 }
@@ -2192,7 +2199,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .apply-hero__title {
   margin-top: 12px;
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-size: var(--fs-h2);
   font-weight: 500;
   line-height: 1.5;
   letter-spacing: .08em;
@@ -2200,7 +2207,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .apply-hero__lead {
   max-width: 32em;
   margin-top: 16px;
-  font-size: 1rem;
+  font-size: var(--fs-body);
   line-height: 1.95;
   color: rgba(255,255,255,.88);
 }
@@ -2214,14 +2221,14 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .apply__label {
   font-family: var(--font-en);
-  font-size: 1rem;
+  font-size: var(--fs-en);
   letter-spacing: .28em;
   color: var(--color-text-sub);
 }
 .apply__side-title,
 .apply__form-title {
   margin-top: 8px;
-  font-size: 1.5rem;
+  font-size: var(--fs-h2);
   font-weight: 500;
   letter-spacing: .08em;
 }
@@ -2313,7 +2320,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .apply-form__submit:hover { background: #fff; color: var(--color-ink); }
 .apply-form__submit:disabled { opacity: .55; cursor: wait; }
 .apply-done h2 {
-  font-size: 1.5rem;
+  font-size: var(--fs-h2);
   font-weight: 500;
 }
 .apply-done p { margin-top: 16px; }
@@ -2326,7 +2333,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .apply-thanks__inner { max-width: 36em; }
 .apply-thanks h1 {
   margin-top: 12px;
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-size: var(--fs-h2);
   font-weight: 500;
   letter-spacing: .08em;
 }
