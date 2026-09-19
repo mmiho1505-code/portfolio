@@ -1,0 +1,5 @@
+.DS_Store
+.pydeps/
+*.pyc
+.venv/
+node_modules/
