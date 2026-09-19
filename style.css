@@ -41,6 +41,8 @@ body {
   font-variant-numeric: lining-nums;
 }
 body.is-locked { overflow: hidden; }
+/* 大きな透かし文字（.about__watermark）が右にはみ出し、タブレット幅で横スクロールが出るのを防ぐ */
+.about { overflow-x: clip; }
 h1, h2, h3, h4, p, ul, ol, dl, dd, figure, blockquote { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
 address { font-style: normal; }
