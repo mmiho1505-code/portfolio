@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Shippori+Mincho:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css?v=sp-fv3">
+  <link rel="stylesheet" href="./style.css?v=apply-sp">
 </head>
 <body>
 
@@ -59,9 +59,13 @@
           </ol>
         </nav>
         <p class="apply-hero__en">Free Consultation</p>
-        <p class="apply-hero__kicker">初回のご相談・財務分析診断書の作成　無料</p>
-        <h1 class="apply-hero__title" id="apply-title">無料相談に申し込む</h1>
-        <p class="apply-hero__lead">まずは決算書を一緒に読むところから始めましょう。財務だけ、保険だけのご相談も承ります。</p>
+        <p class="apply-hero__kicker">初回無料　／　財務分析診断書つき</p>
+        <h1 class="apply-hero__title" id="apply-title">
+          <span class="u-pc">無料相談に申し込む</span>
+          <span class="u-sp">無料相談</span>
+        </h1>
+        <p class="apply-hero__lead">決算書を一緒に読むところから。対面（水戸）またはオンライン。</p>
+        <a class="apply-hero__to-form" href="#apply-form">フォームへ</a>
       </div>
     </section>
 
@@ -87,10 +91,15 @@
           <p class="apply__tel">お電話でも受け付けています<br>TEL&amp;FAX 029-279-1623<br><a href="mailto:miyata@miyata-fp.com">miyata@miyata-fp.com</a></p>
         </aside>
 
-        <div class="apply__main js-fade">
+        <div class="apply__main js-fade" id="apply-form">
           <p class="apply__label">Apply</p>
-          <h2 class="apply__form-title">無料相談お申し込みフォーム</h2>
-          <p class="apply__note">送信後、内容を確認して折り返しご連絡します。決算書がお手元になくても、お申し込みいただけます。</p>
+          <h2 class="apply__form-title">お申し込み</h2>
+          <p class="apply__note">送信後、折り返しご連絡します。決算書がなくても申し込めます。</p>
+          <ul class="apply-picks" aria-label="無料相談の要点">
+            <li><strong>Free</strong><span>初回相談と診断書は無料</span></li>
+            <li><strong>Meet</strong><span>水戸の対面、またはオンライン</span></li>
+            <li><strong>Scope</strong><span>財務・資金繰り・保険の見直し</span></li>
+          </ul>
 
           <form class="apply-form js-apply-form" data-thanks="./apply-thanks.html">
             <input type="hidden" name="_subject" value="【無料相談】お申し込み">
@@ -189,6 +198,6 @@
     </a>
   </footer>
 
-  <script src="./script.js?v=sp-fv3"></script>
+  <script src="./script.js?v=apply-sp"></script>
 </body>
 </html>
