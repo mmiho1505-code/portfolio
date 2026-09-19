@@ -404,7 +404,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   font-weight: 500;
   color: var(--color-ink);
 }
-.fv__line { display: block; overflow: hidden; }
+.fv__line { display: block; } /* overflow: hidden だと「数字」の下線が切れるため外す */
 .fv__title-pc { display: block; }
 .fv__title-sp { display: none; }
 .fv__sub { display: none; }
