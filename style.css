@@ -43,6 +43,10 @@ body {
 body.is-locked { overflow: hidden; }
 /* 大きな透かし文字（.about__watermark）が右にはみ出し、タブレット幅で横スクロールが出るのを防ぐ */
 .about { overflow-x: clip; }
+/* .container の左右余白を padding ショートハンドで 0 に上書きしていたため、
+   1168px 未満で本文が画面の端に張り付いていた。左右だけ .container の余白に戻す */
+.academy .academy__body.container,
+.philosophy .philosophy__inner.container { padding-left: var(--gutter); padding-right: var(--gutter); }
 h1, h2, h3, h4, p, ul, ol, dl, dd, figure, blockquote { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
 address { font-style: normal; }
