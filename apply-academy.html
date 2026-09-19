@@ -13,9 +13,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Shippori+Mincho:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css?v=sp-motion">
+  <link rel="stylesheet" href="./style.css?v=apply-sp4">
 </head>
-<body>
+<body class="page-apply">
 
   <header class="header" id="top">
     <div class="header__inner">
@@ -66,7 +66,7 @@
           <span class="u-sp">社長塾</span>
         </h1>
         <p class="apply-hero__lead">決算書が読める社長になる半年間。講師1名が3社に伴走します。</p>
-        <a class="apply-hero__to-form" href="#apply-form">フォームへ</a>
+        <a class="apply-hero__to-form" href="#apply-form">入力する</a>
       </div>
     </section>
 
@@ -91,6 +91,11 @@
           <p class="apply__label">Apply</p>
           <h2 class="apply__form-title">お申し込み</h2>
           <p class="apply__note">送信後、折り返しご連絡します。定員10名のため、お早めに。</p>
+          <ul class="apply-picks" aria-label="社長塾の要点">
+            <li><strong>期間</strong><span>半年間・全6回</span></li>
+            <li><strong>定員</strong><span>限定10名</span></li>
+            <li><strong>参加費</strong><span>330,000円（税込）</span></li>
+          </ul>
 
           <form class="apply-form js-apply-form" data-thanks="./apply-thanks.html">
             <input type="hidden" name="_subject" value="【社長塾】参加申し込み">
@@ -120,11 +125,11 @@
             <div class="apply-form__row">
               <label class="apply-field">
                 <span>電話番号 <em>必須</em></span>
-                <input type="tel" name="電話番号" required autocomplete="tel">
+                <input type="tel" name="電話番号" required autocomplete="tel" inputmode="tel">
               </label>
               <label class="apply-field">
                 <span>メールアドレス <em>必須</em></span>
-                <input type="email" name="メールアドレス" required autocomplete="email">
+                <input type="email" name="メールアドレス" required autocomplete="email" inputmode="email">
               </label>
             </div>
             <label class="apply-field">
@@ -175,6 +180,6 @@
     </a>
   </footer>
 
-  <script src="./script.js?v=sp-motion"></script>
+  <script src="./script.js?v=apply-sp4"></script>
 </body>
 </html>

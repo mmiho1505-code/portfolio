@@ -13,9 +13,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Shippori+Mincho:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css?v=sp-motion">
+  <link rel="stylesheet" href="./style.css?v=apply-sp4">
 </head>
-<body>
+<body class="page-apply">
 
   <header class="header" id="top">
     <div class="header__inner">
@@ -66,7 +66,7 @@
           <span class="u-sp">本気塾</span>
         </h1>
         <p class="apply-hero__lead">現金で困らない会社づくり。会場とZOOM、どちらでも参加できます。</p>
-        <a class="apply-hero__to-form" href="#apply-form">フォームへ</a>
+        <a class="apply-hero__to-form" href="#apply-form">入力する</a>
       </div>
     </section>
 
@@ -90,6 +90,11 @@
           <p class="apply__label">Apply</p>
           <h2 class="apply__form-title">お申し込み</h2>
           <p class="apply__note">直近の回か、希望の月を選んでください。ZOOMは開催前にURLをお送りします。</p>
+          <ul class="apply-picks" aria-label="本気塾の要点">
+            <li><strong>日程</strong><span>毎月第4日曜</span></li>
+            <li><strong>参加費</strong><span>1回 5,000円</span></li>
+            <li><strong>参加</strong><span>会場、またはZOOM</span></li>
+          </ul>
 
           <form class="apply-form js-apply-form" data-thanks="./apply-thanks.html">
             <input type="hidden" name="_subject" value="【黒字化本気塾】参加申し込み">
@@ -119,11 +124,11 @@
             <div class="apply-form__row">
               <label class="apply-field">
                 <span>電話番号 <em>必須</em></span>
-                <input type="tel" name="電話番号" required autocomplete="tel">
+                <input type="tel" name="電話番号" required autocomplete="tel" inputmode="tel">
               </label>
               <label class="apply-field">
                 <span>メールアドレス <em>必須</em></span>
-                <input type="email" name="メールアドレス" required autocomplete="email">
+                <input type="email" name="メールアドレス" required autocomplete="email" inputmode="email">
               </label>
             </div>
             <div class="apply-form__row">
@@ -189,6 +194,6 @@
     </a>
   </footer>
 
-  <script src="./script.js?v=sp-motion"></script>
+  <script src="./script.js?v=apply-sp4"></script>
 </body>
 </html>
