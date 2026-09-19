@@ -376,7 +376,8 @@
 
       const fd = new FormData(applyForm);
       const payload = {};
-      fd.forEach((value, key) => { payload[key] = value; });
+      // 同じ名前のチェックボックス（複数選択）は「、」でつなげて送る
+      fd.forEach((value, key) => { payload[key] = key in payload ? `${payload[key]}、${value}` : value; });
 
       let sent = false;
       try {
@@ -397,7 +398,7 @@
 
       const subject = encodeURIComponent(String(payload._subject || '申し込み'));
       const body = encodeURIComponent(
-        [...fd.entries()]
+        Object.entries(payload)
           .filter(([key]) => !key.startsWith('_'))
           .map(([key, value]) => `${key}：${value}`)
           .join('\n')

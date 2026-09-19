@@ -52,6 +52,7 @@ body.is-locked { overflow: hidden; }
 .about { overflow-x: clip; }
 /* .container の左右余白を padding ショートハンドで 0 に上書きしていたため、
    1168px 未満で本文が画面の端に張り付いていた。左右だけ .container の余白に戻す */
+.apply .apply__grid.container,
 .academy .academy__body.container,
 .philosophy .philosophy__inner.container { padding-left: var(--gutter); padding-right: var(--gutter); }
 h1, h2, h3, h4, p, ul, ol, dl, dd, figure, blockquote { margin: 0; }
@@ -2445,6 +2446,41 @@ button { font: inherit; color: inherit; cursor: pointer; }
   line-height: 1.7;
 }
 .apply-check input { margin-top: .45em; accent-color: var(--color-ink); }
+.apply-hero--consult .apply-hero__bg img { object-position: 50% 30%; }
+.apply__flow-title {
+  margin-top: 40px;
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+.apply__flow { display: grid; margin-top: 12px; }
+.apply__flow li {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 12px 0;
+  border-top: 1px solid var(--color-border);
+  line-height: 1.7;
+}
+.apply__flow li:last-child { border-bottom: 1px solid var(--color-border); }
+.apply__flow span { font-family: var(--font-en); font-size: 1.125rem; color: var(--color-text-sub); }
+.apply-choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 20px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.apply-choices legend {
+  grid-column: 1 / -1;
+  margin-bottom: 10px;
+  padding: 0;
+  font-size: .8125rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+.apply-choices legend em { margin-left: .4em; font-style: normal; font-weight: 500; color: var(--color-text-sub); }
 .apply-form__submit {
   justify-self: start;
   margin-top: 8px;
@@ -2586,6 +2622,44 @@ button { font: inherit; color: inherit; cursor: pointer; }
     line-height: 1.75;
   }
   .works__more { margin-top: 32px; }
+
+  /* --- 申し込みページ（社長塾・本気塾・無料相談）：1カラムで入力しやすく --- */
+  .apply-hero { padding: calc(var(--header-h) + 28px) 0 36px; }
+  .apply-hero .breadcrumb { margin-bottom: 20px; }
+  .apply-hero__title { font-size: 1.5rem; }
+  .apply__grid { grid-template-columns: 1fr; gap: 48px; padding-top: 36px; padding-bottom: 72px; }
+  .apply__facts { margin-top: 20px; }
+  .apply__facts div { grid-template-columns: 4.5em 1fr; gap: 12px; padding: 12px 0; }
+  .apply__facts dt { font-size: .875rem; letter-spacing: .06em; }
+  .apply__tel { margin: 24px 0 20px; }
+  .apply__note { margin-bottom: 28px; }
+  .apply-form { gap: 20px; }
+  .apply-form__row { grid-template-columns: 1fr; gap: 20px; }
+  .apply-field span,
+  .apply-choices legend { font-size: .875rem; letter-spacing: .06em; }
+  .apply-field input,
+  .apply-field select,
+  .apply-field textarea {
+    min-height: 48px;
+    padding: 12px 14px;
+    border: 1px solid #b8b8b8;
+    border-radius: 6px;
+    background: #fff;
+    font-size: 16px;             /* 16px未満だと iPhone が入力時に拡大してしまう */
+    letter-spacing: .02em;
+  }
+  .apply-field input:focus-visible,
+  .apply-field select:focus-visible,
+  .apply-field textarea:focus-visible {
+    border-color: var(--color-ink);
+    border-bottom-width: 1px;
+    box-shadow: 0 0 0 1px var(--color-ink);
+  }
+  .apply-field textarea { min-height: 9em; }
+  .apply-check { font-size: .9375rem; gap: 10px; }
+  .apply-check input { flex-shrink: 0; width: 20px; height: 20px; margin-top: .2em; }
+  .apply-choices { grid-template-columns: 1fr; gap: 12px; }
+  .apply-form__submit { justify-self: stretch; width: 100%; padding: 18px 20px; font-size: 1rem; }
 
   /* --- 最新の発信 --- */
   .updates__lead { margin-bottom: 28px; }
