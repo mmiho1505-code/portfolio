@@ -2343,6 +2343,111 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .apply-thanks__links { margin-top: 36px; }
 
 /* ==========================================================
+   SP最適化（768px以下）：コンパクトに、読みやすく
+   ─ 本文を16pxに上げ、字間を詰めて1行の文字数を確保
+   ─ 縦に長くなっていた About / 社長塾 / 支援事例 / 最新の発信 を圧縮
+   ========================================================== */
+.works__swipe { display: none; }
+
+@media (max-width: 768px) {
+  :root {
+    --section-space: 64px;
+    --fs-body: 1rem;
+    --color-text-sub: #4a4a4a;   /* 小さな補足文字も読めるよう少し濃く */
+  }
+
+  /* --- 文字：大きく・字間は控えめに --- */
+  body { font-size: 16px; line-height: 1.85; letter-spacing: .03em; }
+  .section-head__ja { letter-spacing: .06em; }
+  .section-head__en { font-size: .875rem; }
+
+  /* --- About：写真の横は1行目だけにして、本文は全幅で読ませる --- */
+  .about__intro { grid-template-columns: 96px 1fr; gap: 14px 16px; align-items: center; }
+  .about__photo { grid-column: 1; grid-row: 1; margin-left: 0; }
+  .about__photo-caption { display: none; }
+  .about__message { display: contents; font-size: 1rem; }
+  .about__message > * { grid-column: 1 / -1; font-size: 1rem; line-height: 1.85; letter-spacing: .03em; }
+  .about__message > .about__lead { grid-column: 2; grid-row: 1; font-size: 1.0625rem; line-height: 1.7; }
+  .profile-table__row { grid-template-columns: 5.4em 1fr; gap: 12px; padding: 12px 0; }
+  .profile-table dt { font-size: .9375rem; }
+  .profile-table dd { font-size: .9375rem; }
+
+  /* --- Services --- */
+  .service,
+  .service:nth-child(odd),
+  .service:nth-child(even) { padding: 14px 0; }
+
+  /* --- 社長塾：大きな箱を詰めて、講座・講師は2列に --- */
+  #academy .academy__hero { padding: 64px 0 48px; }
+  .academy__body { padding-top: 8px; padding-bottom: 64px; }
+  .academy__block { margin-top: 48px; }
+  .academy__points { margin-top: 36px; }
+  .academy__point { min-height: 0; padding: 18px 18px 20px 64px; }
+  /* 番号も <p> なので .academy__point p より強い指定で左に絶対配置する */
+  .academy__point .academy__point-num { position: absolute; left: 18px; right: auto; top: 18px; margin: 0; font-size: 1.875rem; line-height: 1; opacity: .5; }
+  .academy__point h3 { margin-top: 0; }
+  .academy__point p { margin-top: 6px; line-height: 1.8; color: rgba(255,255,255,.88); }
+  .academy__curric { grid-template-columns: 1fr 1fr; margin-top: 20px; }
+  .academy__curric li { min-height: 0; gap: 2px; padding: 14px; }
+  .academy__curric span { font-size: .8125rem; letter-spacing: .1em; }
+  .academy__curric strong { font-size: .9375rem; letter-spacing: .04em; }
+  .academy__facts { margin-top: 40px; }
+  .academy__facts div { grid-template-columns: 4.5em 1fr; gap: 10px; padding: 12px 0; }
+  .academy__faculty { grid-template-columns: 1fr 1fr; gap: 20px 16px; margin-top: 20px; }
+  .academy__faculty li { padding-top: 12px; }
+  .academy__faculty-name { font-size: .9375rem; }
+  .academy__faculty p { margin-top: 4px; font-size: .8125rem; color: rgba(255,255,255,.8); }
+  .academy__cta .circle-btn--lg { width: 180px; height: 180px; }
+
+  /* --- 支援事例：縦に6枚並べず、横スワイプのカルーセルに --- */
+  .works__intro { padding: 56px 0 48px; }
+  .works__body { padding-top: 40px; padding-bottom: 56px; }
+  .works__swipe {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: .8125rem;
+    letter-spacing: .1em;
+    color: var(--color-text-sub);
+  }
+  .works__swipe::after { content: ""; width: 32px; height: 1px; background: currentColor; }
+  .works__grid {
+    display: flex;
+    gap: 16px;
+    max-width: none;
+    margin: 0 calc(var(--gutter) * -1);
+    padding: 0 var(--gutter) 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 var(--gutter);
+    overscroll-behavior-x: contain;
+  }
+  .works__grid > li { flex: 0 0 80%; scroll-snap-align: start; }
+  .works__grid .js-fade { opacity: 1; transform: none; }
+  .work-card:hover { transform: none; }
+  .work-card__body { padding-top: 14px; }
+  .work-card__title { margin-top: 10px; font-size: 1rem; line-height: 1.6; }
+  .work-card__summary {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: .875rem;
+    line-height: 1.75;
+  }
+  .works__more { margin-top: 32px; }
+
+  /* --- 最新の発信 --- */
+  .updates__lead { margin-bottom: 28px; }
+  .updates__grid { gap: 32px; }
+  .update-col__frame { height: 400px; }
+  .update-col__fallback { min-height: 0; gap: 16px; padding: 20px; }
+  .update-col__title { margin-bottom: 12px; }
+}
+
+/* ==========================================================
    Reduced motion
    ========================================================== */
 @media (prefers-reduced-motion: reduce) {
