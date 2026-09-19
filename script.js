@@ -157,33 +157,58 @@
   /* ---------- スクロールフェードイン ---------- */
   const fadeEls = document.querySelectorAll('.js-fade');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isSp = window.matchMedia('(max-width: 768px)').matches;
 
   fadeEls.forEach((el) => {
     const parent = el.parentElement;
     if (!parent) return;
     const siblings = Array.from(parent.children).filter((c) => c.classList.contains('js-fade'));
     const idx = siblings.indexOf(el);
-    if (idx > 0) el.style.setProperty('--stagger', `${idx * 90}ms`);
+    if (idx > 0) el.style.setProperty('--stagger', `${idx * (isSp ? 70 : 90)}ms`);
   });
 
+  const reveal = (el) => el.classList.add('is-inview');
+  const isOnscreen = (el) => {
+    const r = el.getBoundingClientRect();
+    if (r.width === 0 && r.height === 0) return false;
+    const slack = window.innerHeight * (isSp ? 0.22 : 0.08);
+    return r.top < window.innerHeight + slack && r.bottom > 0;
+  };
+
   if (reduced || !('IntersectionObserver' in window)) {
-    fadeEls.forEach((el) => el.classList.add('is-inview'));
+    fadeEls.forEach(reveal);
   } else {
     const io = new IntersectionObserver((entries, obs) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-inview');
+        reveal(entry.target);
         obs.unobserve(entry.target);
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    fadeEls.forEach((el) => io.observe(el));
+    }, isSp
+      ? { rootMargin: '12% 0px 24% 0px', threshold: 0 }
+      : { rootMargin: '0px 0px -8% 0px', threshold: 0.08 }
+    );
+
+    fadeEls.forEach((el) => {
+      if (isSp && (el.closest('.fv') || isOnscreen(el))) {
+        requestAnimationFrame(() => requestAnimationFrame(() => reveal(el)));
+        return;
+      }
+      io.observe(el);
+    });
+
+    window.addEventListener('load', () => {
+      fadeEls.forEach((el) => {
+        if (!el.classList.contains('is-inview') && isOnscreen(el)) reveal(el);
+      });
+    }, { once: true });
   }
 
   const fvBg = document.querySelector('.fv__bg');
   const philBg = document.querySelector('.philosophy__bg');
-  if (!reduced && fvBg) {
+  if (!reduced && !isSp && fvBg) {
     let ticking = false;
-    const onScroll = () => {
+    const onParallax = () => {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
@@ -196,8 +221,36 @@
         ticking = false;
       });
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    window.addEventListener('scroll', onParallax, { passive: true });
+    onParallax();
+  }
+
+  /* 数字のカウント（画面に入ったとき一度だけ） */
+  if (!reduced) {
+    document.querySelectorAll('.js-count').forEach((el) => {
+      const end = Number(el.getAttribute('data-count'));
+      if (!Number.isFinite(end)) return;
+      const run = () => {
+        const start = performance.now();
+        const dur = 1200;
+        const tick = (now) => {
+          const t = Math.min(1, (now - start) / dur);
+          el.textContent = String(Math.round(end * (1 - (1 - t) ** 3)));
+          if (t < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      };
+      if (!('IntersectionObserver' in window) || isOnscreen(el)) {
+        run();
+        return;
+      }
+      const cio = new IntersectionObserver((entries, obs) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        run();
+        obs.disconnect();
+      }, { threshold: 0.35, rootMargin: '0px 0px 12% 0px' });
+      cio.observe(el);
+    });
   }
 
   /* ---------- FAQ アコーディオン（開くのは常に1つ） ---------- */
