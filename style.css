@@ -936,11 +936,11 @@ html:not(.no-js) .fv__title:not(.is-inview) .fv__char { opacity: 0; }
 .philosophy {
   position: relative;
   margin-top: 48px;
+  margin-bottom: 0;
   overflow: hidden;
-  color: #fff;
-  background: #0b0b0b;
-  border-top: 1px solid rgba(255,255,255,.12);
-  border-bottom: 1px solid rgba(255,255,255,.12);
+  color: var(--color-ink);
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-border);
 }
 .philosophy__watermark {
   position: absolute;
@@ -954,8 +954,8 @@ html:not(.no-js) .fv__title:not(.is-inview) .fv__char { opacity: 0; }
   font-weight: 400;
   line-height: .8;
   letter-spacing: .08em;
-  color: #fff;
-  opacity: .045;
+  color: var(--color-ink);
+  opacity: .05;
   pointer-events: none;
   user-select: none;
   white-space: nowrap;
@@ -968,7 +968,7 @@ html:not(.no-js) .fv__title:not(.is-inview) .fv__char { opacity: 0; }
   grid-template-columns: auto 1fr;
   gap: 6px 40px;
   align-items: baseline;
-  padding: 56px 0;
+  padding: 56px 0 64px;
 }
 .philosophy__en {
   grid-column: 1;
@@ -976,21 +976,21 @@ html:not(.no-js) .fv__title:not(.is-inview) .fv__char { opacity: 0; }
   font-size: .875rem;
   font-weight: 500;
   letter-spacing: .36em;
-  color: rgba(255,255,255,.42);
+  color: var(--color-text-sub);
 }
 .philosophy__label {
   grid-column: 1;
   font-size: .75rem;
   font-weight: 700;
   letter-spacing: .32em;
-  color: rgba(255,255,255,.72);
+  color: var(--color-ink);
 }
 .philosophy__inner blockquote {
   grid-column: 2;
   grid-row: 1 / span 2;
   margin: 0;
   padding-left: 28px;
-  border-left: 1px solid rgba(255,255,255,.28);
+  border-left: 1px solid var(--color-ink);
 }
 .philosophy__inner blockquote p {
   font-size: clamp(1.0625rem, 2vw, 1.375rem);
@@ -999,7 +999,7 @@ html:not(.no-js) .fv__title:not(.is-inview) .fv__char { opacity: 0; }
   letter-spacing: .1em;
 }
 .philosophy__em {
-  box-shadow: inset 0 -1px 0 rgba(255,255,255,.85);
+  box-shadow: inset 0 -1px 0 var(--color-ink);
   padding-bottom: .06em;
   font-weight: 700;
 }
@@ -1378,7 +1378,9 @@ html:not(.no-js) .fv__title:not(.is-inview) .fv__char { opacity: 0; }
   color: rgba(255,255,255,.5) !important;
 }
 /* --- 社長塾：トップページは要約だけ（詳細は academy.html） --- */
-.academy--teaser .academy__hero { padding: 104px 0 104px; }
+.academy--teaser {
+  border-top: 12px solid var(--color-bg);
+}
 .academy-teaser__facts {
   display: grid;
   grid-template-columns: repeat(4, auto);
