@@ -348,6 +348,77 @@ button { font: inherit; color: inherit; cursor: pointer; }
   will-change: transform;
   animation: kenburns 28s ease-in-out alternate infinite;
 }
+.fv__video {
+  display: none;
+}
+.fv--film {
+  color: #fff;
+  background: #0b0b0b;
+}
+.fv--film .fv__bg img {
+  height: 100%;
+  animation: none;
+  object-position: 50% 42%;
+}
+.fv--film .fv__video {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 42%;
+}
+.fv--film .fv__bg::after {
+  background:
+    linear-gradient(180deg, rgba(8,8,8,.28) 0%, rgba(8,8,8,.12) 38%, rgba(8,8,8,.72) 100%);
+}
+.fv--film .fv__bg::before { opacity: .25; }
+.fv--film .fv__title,
+.fv--film .fv__sub,
+.fv--film .fv__en,
+.fv--film .fv__lead,
+.fv--film .fv__lead-foot,
+.fv--film .fv__credit,
+.fv--film .fv__name,
+.fv--film .fv__name-en,
+.fv--film .fv__role,
+.fv--film .fv__field-ja,
+.fv--film .fv__field-en,
+.fv--film .fv__field-num,
+.fv--film .fv__free-text,
+.fv--film .fv .text-link,
+.fv--film .text-link,
+.fv--film .fv__scroll { color: #fff; }
+.fv--film .fv__sub,
+.fv--film .fv__en,
+.fv--film .fv__lead-foot,
+.fv--film .fv__role,
+.fv--film .fv__name-en,
+.fv--film .fv__field-en { color: rgba(255,255,255,.82); }
+.fv--film .circle-btn { border-color: #fff; color: #fff; }
+.fv--film .circle-btn:hover { background: #fff; color: var(--color-ink); }
+.fv--film .fv__free-badge { background: #fff; color: var(--color-ink); }
+.fv--film .fv__credit { border-top-color: rgba(255,255,255,.28); }
+.fv--film .fv__lead span + span { border-left-color: rgba(255,255,255,.35); }
+.fv__sound {
+  position: absolute;
+  z-index: 3;
+  top: calc(var(--header-h) + 8px);
+  right: 24px;
+  left: auto;
+  bottom: auto;
+  padding: 8px 14px;
+  border: 1px solid rgba(255,255,255,.7);
+  background: rgba(0,0,0,.35);
+  color: #fff;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  backdrop-filter: blur(8px);
+}
+.fv__sound:hover { background: #fff; color: var(--color-ink); }
+.fv__sound[aria-pressed="true"] { background: #fff; color: var(--color-ink); }
 .fv__bg::after {
   content: "";
   position: absolute;
@@ -1521,6 +1592,32 @@ html:not(.no-js) .fv__title:not(.is-inview) .fv__char { opacity: 0; }
   color: rgba(255, 255, 255, .92);
 }
 .contact :focus-visible { outline-color: #fff; }
+
+/* ==========================================================
+   1b. Video（CapCut）
+   ========================================================== */
+.reel { padding-top: 56px; padding-bottom: 56px; background: var(--color-bg); }
+.reel__lead {
+  max-width: 28em;
+  margin: -8px 0 24px;
+  font-size: var(--fs-body);
+  color: var(--color-text-sub);
+  letter-spacing: .08em;
+}
+.reel__player {
+  overflow: hidden;
+  background: #111;
+  border: 1px solid var(--color-border);
+  aspect-ratio: 16 / 9;
+}
+.reel__player video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #111;
+  vertical-align: top;
+}
 
 /* ==========================================================
    5b. Updates（SNS最新）
@@ -2766,6 +2863,15 @@ html:not(.no-js) .fv__title:not(.is-inview) .fv__char { opacity: 0; }
   .apply-choices { grid-template-columns: 1fr; gap: 12px; }
   .apply-form__submit { justify-self: stretch; width: 100%; padding: 18px 20px; font-size: 1rem; }
 
+  /* --- 動画 --- */
+  .reel { padding-top: 36px; padding-bottom: 40px; }
+  .reel__lead { margin-bottom: 16px; }
+  .reel__player {
+    margin: 0 calc(var(--gutter) * -1);
+    border-left: 0;
+    border-right: 0;
+  }
+
   /* --- 最新の発信 --- */
   .updates__lead { margin-bottom: 28px; }
   .updates__grid { gap: 32px; }
@@ -2807,6 +2913,11 @@ html:not(.no-js) .fv__title:not(.is-inview) .fv__char { opacity: 0; }
     min-height: 0 !important;
     height: auto;
     padding: calc(var(--header-h) + 24px) 0 32px;
+  }
+  .fv--film {
+    min-height: 100svh !important;
+    height: 100svh;
+    padding: calc(var(--header-h) + 12px) 0 24px;
   }
   .fv__inner::before,
   .fv__en,
@@ -2979,6 +3090,11 @@ html:not(.no-js) .fv__title:not(.is-inview) .fv__char { opacity: 0; }
     height: 124%;
     animation: kenburns 36s ease-in-out alternate infinite;
   }
+  .fv--film .fv__bg img {
+    height: 100%;
+    animation: none;
+  }
+  .fv__sound { top: calc(var(--header-h) + 4px); right: 16px; }
   .fv .circle-btn { animation: pulseRing 3.2s ease-out infinite; }
 
   .juku-banner__inner { padding: 12px 0; gap: 8px 16px; }
@@ -3018,6 +3134,8 @@ html:not(.no-js) .fv__title:not(.is-inview) .fv__char { opacity: 0; }
   .fv__bg img,
   .philosophy__bg img,
   .academy__bg img { height: 100%; }
+  .fv--film .fv__video,
+  .fv__sound { display: none !important; }
 }
 
 /* ==========================================================

@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Shippori+Mincho:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css?v=apply-sp5">
+  <link rel="stylesheet" href="./style.css?v=fv-video">
 </head>
 <body>
 
@@ -58,9 +58,12 @@
 
   <main>
     <!-- ===== 1. FV ===== -->
-    <section class="fv" aria-labelledby="fv-title">
+    <section class="fv fv--film" aria-labelledby="fv-title">
       <div class="fv__bg" aria-hidden="true">
-        <img src="./images/fv-bg.jpg" alt="" width="1600" height="2400" fetchpriority="high">
+        <img class="fv__poster" src="./images/capcut0920.jpg" alt="" width="1280" height="720" fetchpriority="high">
+        <video class="fv__video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="./images/capcut0920.jpg">
+          <source src="./videos/capcut0920.mp4" type="video/mp4">
+        </video>
       </div>
       <div class="fv__inner container">
         <p class="fv__en js-fade"><span>Mito, Ibaraki</span><span>Finance / Insurance</span></p>
@@ -118,6 +121,7 @@
           <span class="fv__role">株式会社宮田財務｜財務コンサルタント／ファイナンシャルプランナー（AFP）・保険乗合代理店</span>
         </p>
       </div>
+      <button class="fv__sound" type="button" aria-pressed="false">音を出す</button>
       <a class="fv__scroll" href="#about" aria-label="自己紹介へスクロール"><span>Scroll</span></a>
     </section>
 
@@ -519,6 +523,6 @@
     </div>
   </div>
 
-  <script src="./script.js?v=apply-sp5"></script>
+  <script src="./script.js?v=fv-video"></script>
 </body>
 </html>

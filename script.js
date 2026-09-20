@@ -463,4 +463,33 @@
       submit.textContent = original;
     });
   }
+
+  const fvVideo = document.querySelector('.fv__video');
+  const fvSound = document.querySelector('.fv__sound');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (fvVideo && reduceMotion) {
+    fvVideo.remove();
+    if (fvSound) fvSound.remove();
+  } else if (fvVideo) {
+    const tryPlay = () => { fvVideo.play().catch(() => {}); };
+    fvVideo.addEventListener('loadeddata', tryPlay);
+    tryPlay();
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) tryPlay();
+          else fvVideo.pause();
+        });
+      }, { threshold: 0.2 }).observe(fvVideo);
+    }
+    if (fvSound) {
+      fvSound.addEventListener('click', () => {
+        const turnOn = fvVideo.muted;
+        fvVideo.muted = !turnOn;
+        fvSound.setAttribute('aria-pressed', String(turnOn));
+        fvSound.textContent = turnOn ? '音を止める' : '音を出す';
+        tryPlay();
+      });
+    }
+  }
 })();
