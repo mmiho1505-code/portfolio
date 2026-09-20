@@ -3032,62 +3032,61 @@ html:not(.no-js) .fv__title:not(.is-inview) .fv__char { opacity: 0; }
   .about__table-wrap,
   .about__scenes { display: none !important; }
   .about__intro {
-    display: block;
-    grid-template-columns: none;
-    gap: 0;
+    display: grid !important;
+    grid-template-columns: 104px minmax(0, 1fr) !important;
+    gap: 4px 16px !important;
+    align-items: center;
   }
   .about__photo {
-    width: 100vw;
-    max-width: 100vw;
-    margin: 0 calc(50% - 50vw);
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
   }
   .about__photo .ph--about {
-    aspect-ratio: 3 / 4;
-    height: auto;
-    max-height: 68vh;
+    aspect-ratio: 3 / 4 !important;
+    height: auto !important;
+    max-height: none !important;
+    border: 1px solid rgba(17, 17, 17, .16);
   }
-  .about__photo-caption {
-    display: block;
-    left: 20px;
-    bottom: 16px;
-    font-family: var(--font-en);
-    font-size: .75rem;
-    letter-spacing: .28em;
-  }
+  .about__photo .ph--about::after { display: none; }
+  .about__photo-caption { display: none !important; }
   .about__message {
-    margin-top: 20px;
+    margin-top: 0 !important;
     gap: 0;
-    font-size: 1rem;
-    line-height: 1.8;
+    font-size: .9375rem;
+    line-height: 1.7;
   }
   .about__lead {
-    font-size: 1.0625rem;
-    letter-spacing: .06em;
-    line-height: 1.75;
+    font-size: .9375rem !important;
+    letter-spacing: .04em;
+    line-height: 1.7 !important;
   }
   .about__meta-sp {
     display: grid !important;
-    margin-top: 28px;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 22px;
     padding: 0;
+    column-gap: 16px;
   }
   .about__meta-sp-row {
     display: grid;
-    gap: 4px;
-    padding: 14px 0;
-    border-top: 1px solid rgba(17, 17, 17, .18);
+    gap: 2px;
+    padding: 12px 0;
+    border-top: 1px solid rgba(17, 17, 17, .16);
   }
-  .about__meta-sp-row:last-child { border-bottom: 1px solid rgba(17, 17, 17, .18); }
+  .about__meta-sp-row:nth-child(n+3) { border-bottom: 1px solid rgba(17, 17, 17, .16); }
+  .about__meta-sp-row:last-child { border-bottom: 1px solid rgba(17, 17, 17, .16); }
   .about__meta-sp dt {
     font-family: var(--font-en);
-    font-size: .8125rem;
+    font-size: .6875rem;
     font-weight: 500;
-    letter-spacing: .22em;
+    letter-spacing: .2em;
     color: #6a6a6a;
   }
   .about__meta-sp dd {
-    font-size: 1.0625rem;
+    font-size: .875rem;
     font-weight: 500;
-    letter-spacing: .08em;
+    letter-spacing: .04em;
     color: var(--color-ink);
   }
   .philosophy { margin-top: 32px; }
@@ -3099,7 +3098,6 @@ html:not(.no-js) .fv__title:not(.is-inview) .fv__char { opacity: 0; }
     font-size: 1.875rem;
     letter-spacing: .04em;
   }
-  .about__photo .ph--about { max-height: 58vh; }
 }
 
 /* ==========================================================
@@ -3166,8 +3164,8 @@ html:not(.no-js) .fv__title:not(.is-inview) .fv__char { opacity: 0; }
   .juku-banner__copy { display: none !important; }
 
   .about__photo .ph--about img {
-    will-change: transform;
-    animation: kenburnsSoft 34s ease-in-out alternate infinite;
+    will-change: auto;
+    animation: none;
   }
   .about__photo:hover .ph--about img { transform: none; }
 
