@@ -1686,7 +1686,7 @@ html:not(.no-js) .fv__title:not(.is-inview) .fv__char { opacity: 0; }
 }
 .updates__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 40px 28px;
   align-items: start;
 }
@@ -3003,6 +3003,14 @@ html:not(.no-js) .fv__title:not(.is-inview) .fv__char { opacity: 0; }
     letter-spacing: .14em;
     color: var(--color-text-sub);
   }
+  .fv--film .fv__sub,
+  .fv--film .fv__credit,
+  .fv--film .fv__name,
+  .fv--film .text-link {
+    color: #fff !important;
+  }
+  .fv--film .text-link::after { background: #fff !important; }
+  .fv--film .juku-banner { display: none !important; }
   .fv__row { margin-top: 22px; gap: 16px; }
   .fv__col--cta { display: grid; grid-template-columns: 1fr; justify-items: start; gap: 12px; }
   .fv__actions { flex-direction: column; align-items: flex-start; gap: 14px; }
