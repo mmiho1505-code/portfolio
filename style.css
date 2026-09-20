@@ -1381,6 +1381,7 @@ html:not(.no-js) .fv__title:not(.is-inview) .fv__char { opacity: 0; }
 .academy--teaser {
   border-top: 12px solid var(--color-bg);
 }
+.academy--teaser .academy__hero { padding: 104px 0 104px; }
 .academy-teaser__facts {
   display: grid;
   grid-template-columns: repeat(4, auto);
