@@ -12,37 +12,51 @@
   <meta property="og:description" content="初回のご相談と「財務分析診断書」の作成は無料です。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Shippori+Mincho:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Old+Mincho:wght@500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css?v=juku-sp1">
+  <!-- デザイン案：見た目を差し替えるスタイル -->
+  <link rel="stylesheet" href="./redesign.css?v=5">
 </head>
 <body class="page-apply">
 
-  <header class="header" id="top">
-    <div class="header__inner">
-      <a class="header__logo logo" href="./index.html">
-        <img class="logo__img" src="./images/logo.png" alt="株式会社宮田財務" width="1024" height="204">
-      </a>
-      <button class="header__toggle" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く">
-        <span class="header__toggle-bar"></span>
-        <span class="header__toggle-bar"></span>
-      </button>
-      <nav class="nav" id="global-nav" aria-label="グローバルナビゲーション">
-        <ul class="nav__list">
-          <li><a class="nav__link" href="./index.html#about">About</a></li>
-          <li><a class="nav__link" href="./status.html">Status</a></li>
-          <li><a class="nav__link" href="./index.html#services">Services</a></li>
-          <li><a class="nav__link" href="./index.html#works">Works</a></li>
-          <li><a class="nav__link" href="./stories/index.html">Stories</a></li>
-          <li><a class="nav__link" href="./index.html#study">Study</a></li>
-          <li><a class="nav__link" href="./index.html#faq">FAQ</a></li>
-          <li><a class="nav__link" href="./index.html#contact">Contact</a></li>
-        </ul>
-        <div class="nav__ctas">
-          <a class="nav__cta nav__cta--primary" href="./apply-consult.html" aria-current="page">無料相談はこちら</a>
-          <a class="nav__cta" href="./apply-academy.html">社長塾申し込み</a>
-        </div>
-      </nav>
-    </div>
+  <!-- ===== 0. Header（デザイン案：2段ヘッダー） ===== -->
+  <header class="header gh" id="top">
+    <a class="gh__logo" href="./index.html">
+      <img src="./images/logo.png" alt="株式会社宮田財務" width="1024" height="204">
+    </a>
+    <nav class="gh__nav" id="global-nav" aria-label="グローバルナビゲーション">
+      <div class="gh__bar">
+        <p class="gh__tagline">財務コンサルティング・資金繰り改善・保険の適正化なら宮田財務へ</p>
+        <a class="gh__tel" href="tel:0292791623">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5h3l1.5 4.2-2 1.4a12 12 0 0 0 5.8 5.8l1.4-2 4.2 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.700a2 2 0 0 1 2-2.200z"/></svg>
+          <span class="u-visually-hidden">電話</span>029-279-1623
+        </a>
+        <a class="gh__cta gh__cta--juku" href="./apply-academy.html">社長塾申し込み</a>
+        <a class="gh__cta gh__cta--consult" href="./apply-consult.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.500" width="18" height="13" rx="1.500"/><path d="M3.500 7l8.500 6 8.500-6"/></svg>
+          無料相談はこちら
+        </a>
+      </div>
+      <ul class="gh__list">
+        <li><a class="gh__link" href="./index.html"><span class="gh__ja">トップ</span><span class="gh__en" aria-hidden="true">Top</span></a></li>
+        <li><a class="gh__link" href="./index.html#about"><span class="gh__ja">自己紹介</span><span class="gh__en" aria-hidden="true">About</span></a></li>
+        <li class="gh__only-sp"><a class="gh__link" href="./status.html"><span class="gh__ja">中小企業の現状</span><span class="gh__en" aria-hidden="true">Status</span></a></li>
+        <li><a class="gh__link" href="./index.html#services"><span class="gh__ja">できること</span><span class="gh__en" aria-hidden="true">Services</span></a></li>
+        <li><a class="gh__link" href="./index.html#academy"><span class="gh__ja">社長塾</span><span class="gh__en" aria-hidden="true">Academy</span></a></li>
+        <li><a class="gh__link" href="./index.html#study"><span class="gh__ja">黒字化本気塾</span><span class="gh__en" aria-hidden="true">Study</span></a></li>
+        <li><a class="gh__link" href="./index.html#works"><span class="gh__ja">支援事例</span><span class="gh__en" aria-hidden="true">Works</span></a></li>
+        <li><a class="gh__link" href="./stories/index.html"><span class="gh__ja">コンサル実話</span><span class="gh__en" aria-hidden="true">Stories</span></a></li>
+        <li><a class="gh__link" href="./index.html#faq"><span class="gh__ja">よくある質問</span><span class="gh__en" aria-hidden="true">FAQ</span></a></li>
+        <li class="gh__only-sp"><a class="gh__link" href="./index.html#updates"><span class="gh__ja">最新の発信</span><span class="gh__en" aria-hidden="true">Media</span></a></li>
+        <li class="gh__only-sp"><a class="gh__link" href="./index.html#contact"><span class="gh__ja">お問い合わせ</span><span class="gh__en" aria-hidden="true">Contact</span></a></li>
+      </ul>
+    </nav>
+    <a class="gh__quicktel" href="tel:0292791623" aria-label="電話をかける 029-279-1623">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5h3l1.5 4.2-2 1.4a12 12 0 0 0 5.8 5.8l1.4-2 4.2 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.700a2 2 0 0 1 2-2.200z"/></svg>
+    </a>
+    <button class="header__toggle gh__toggle" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く">
+      <span class="gh__burger" aria-hidden="true"></span>
+    </button>
   </header>
 
   <main>
@@ -182,15 +196,35 @@
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="footer__inner container">
-      <a class="footer__logo logo" href="./index.html">
-        <img class="logo__img" src="./images/logo.png" alt="株式会社宮田財務" width="1024" height="204">
-      </a>
-      <div class="footer__meta">
-        <a class="footer__link" href="./index.html#contact">お問い合わせ</a>
-        <p class="footer__copy"><small>&copy; 2026 株式会社宮田財務</small></p>
+  <!-- ===== 7. Footer（デザイン案：案内と連絡先つき） ===== -->
+  <footer class="footer gf">
+    <div class="gf__inner container">
+      <div class="gf__brand">
+        <a class="footer__logo logo" href="./index.html">
+          <img class="logo__img" src="./images/logo.png" alt="株式会社宮田財務" width="1024" height="204">
+        </a>
+        <address class="gf__address">〒310-0066 茨城県水戸市金町3-4-30-103<br>TEL&amp;FAX <a href="tel:0292791623">029-279-1623</a></address>
       </div>
+      <nav class="gf__nav" aria-label="フッターナビゲーション">
+        <ul>
+          <li><a href="./index.html#about">自己紹介</a></li>
+          <li><a href="./status.html">中小企業の現状</a></li>
+          <li><a href="./index.html#services">できること</a></li>
+          <li><a href="./index.html#works">支援事例</a></li>
+          <li><a href="./stories/index.html">コンサル実話</a></li>
+        </ul>
+        <ul>
+          <li><a href="./academy.html">社長塾</a></li>
+          <li><a href="./index.html#study">黒字化本気塾</a></li>
+          <li><a href="./index.html#faq">よくある質問</a></li>
+          <li><a href="./index.html#updates">最新の発信</a></li>
+          <li><a href="./apply-consult.html">無料相談のお申し込み</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="gf__bottom container">
+      <a class="footer__link" href="https://www.fpmiyata.com/privacy-policy/" target="_blank" rel="noopener">プライバシーポリシー</a>
+      <p class="footer__copy"><small>&copy; 2026 株式会社宮田財務</small></p>
     </div>
     <a class="pagetop" href="#top" aria-label="ページトップへ戻る">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
@@ -198,5 +232,15 @@
   </footer>
 
   <script src="./script.js?v=about-sp2"></script>
+  <script>
+    /* デザイン案のヘッダーは 1100px で切り替わるので、広げたときに開いたメニューを閉じる */
+    (function () {
+      var t = document.querySelector('.header__toggle');
+      if (!t || !window.matchMedia) return;
+      window.matchMedia('(min-width: 1100px)').addEventListener('change', function (e) {
+        if (e.matches && t.getAttribute('aria-expanded') === 'true') t.click();
+      });
+    })();
+  </script>
 </body>
 </html>
