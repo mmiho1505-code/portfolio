@@ -206,6 +206,11 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .section-head--center .section-head__en { justify-content: center; }
 .section-head--invert .section-head__en { color: rgba(255,255,255,.55); }
 .section-head--invert .section-head__ja { color: #fff; }
+.section-head__en--light { color: rgba(255,255,255,.55); }
+.section-head__ja--light { color: #fff; }
+
+/* 語の途中で折り返さない（スマホで「ホ／ール」のように切れるのを防ぐ） */
+.phrase { display: inline-block; }
 
 /* ==========================================================
    0. Header
@@ -397,9 +402,13 @@ body.is-locked .header--film:not(.is-scrolled) .logo__img { filter: none; }
 }
 .fv--film .fv__bg::after {
   background:
-    linear-gradient(180deg, rgba(8,8,8,.28) 0%, rgba(8,8,8,.12) 38%, rgba(8,8,8,.72) 100%);
+    linear-gradient(90deg, rgba(8,8,8,.55) 0%, rgba(8,8,8,.3) 50%, rgba(8,8,8,0) 80%),
+    linear-gradient(180deg, rgba(8,8,8,.4) 0%, rgba(8,8,8,.35) 38%, rgba(8,8,8,.82) 100%);
 }
 .fv--film .fv__bg::before { opacity: .25; }
+.fv--film .fv__inner { text-shadow: 0 1px 12px rgba(0,0,0,.45); }
+.fv--film .circle-btn:hover,
+.fv--film .fv__free-badge { text-shadow: none; }
 .fv--film .fv__title,
 .fv--film .fv__sub,
 .fv--film .fv__en,
@@ -734,7 +743,8 @@ html:not(.no-js) .fv__title:not(.is-inview) .fv__char { opacity: 0; }
   grid-template-columns: auto 1fr auto;
   align-items: baseline;
   gap: 12px 28px;
-  padding: 22px 0 24px;
+  padding-top: 22px;
+  padding-bottom: 24px;
   border-top: 1px solid rgba(255,255,255,.32);
 }
 .juku-banner__en {
@@ -1354,7 +1364,7 @@ html:not(.no-js) .fv__title:not(.is-inview) .fv__char { opacity: 0; }
 .academy-teaser__facts li { padding: 16px 28px; line-height: 1.6; }
 .academy-teaser__facts li:first-child { padding-left: 0; }
 .academy-teaser__facts li + li { border-left: 1px solid rgba(255,255,255,.16); }
-.academy-teaser__facts span {
+.academy-teaser__facts span:not(.phrase) {
   display: block;
   font-size: .8125rem;
   letter-spacing: .16em;
@@ -2265,9 +2275,11 @@ html:not(.no-js) .fv__title:not(.is-inview) .fv__char { opacity: 0; }
    ========================================================== */
 @media (max-width: 1320px) {
   .header__place { display: none; }
+  /* 開いたメニュー（z-index: 90）の上に、ロゴと閉じるボタンを出す */
+  .header__brand { position: relative; z-index: 95; }
   .header__toggle {
     position: relative;
-    z-index: 2;
+    z-index: 95;
     display: block;
     width: 48px;
     height: 48px;
@@ -2298,12 +2310,33 @@ html:not(.no-js) .fv__title:not(.is-inview) .fv__char { opacity: 0; }
     gap: 32px;
     padding: 96px var(--gutter) 64px;
     overflow-y: auto;
-    background: rgba(255, 255, 255, .96);
+    background: #fff;
     opacity: 0;
     visibility: hidden;
     transition: opacity .4s ease, visibility .4s ease;
   }
   .nav.is-open { opacity: 1; visibility: visible; }
+  /* 項目が画面より長いときも上が切れないように中央寄せする */
+  .nav > :first-child { margin-top: auto; }
+  .nav > :last-child { margin-bottom: auto; }
+  .nav { justify-content: flex-start; }
+  /* ぼかしがあるとメニューがヘッダーの枠に閉じ込められるので、開いている間は外す */
+  body.is-locked .header {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  /* トップの動画上でも、開いたメニューの文字は黒にする */
+  body.is-locked .header--film:not(.is-scrolled) .nav__link { color: var(--color-ink); }
+  body.is-locked .header--film:not(.is-scrolled) .nav__cta {
+    border-color: var(--color-ink);
+    color: var(--color-ink);
+    background: transparent;
+  }
+  body.is-locked .header--film:not(.is-scrolled) .nav__cta--primary {
+    color: #fff;
+    background: var(--color-ink);
+  }
+  body.is-locked .header--film:not(.is-scrolled) .nav__cta:not(.nav__cta--primary)::before { background: var(--color-ink); }
   .nav__list { flex-direction: column; gap: 8px; }
   .nav__link { display: block; padding: 8px 12px; font-size: 1.5rem; text-align: center; }
   .nav__ctas { flex-direction: column; align-items: stretch; gap: 12px; width: min(320px, 100%); }
@@ -2987,8 +3020,9 @@ html:not(.no-js) .fv__title:not(.is-inview) .fv__char { opacity: 0; }
   .fv--film .text-link::after { background: #fff !important; }
   .fv--film .juku-banner { display: block !important; }
   .juku-banner__inner {
-    grid-template-columns: 1fr auto;
-    padding: 16px 0 18px;
+    grid-template-columns: auto 1fr auto;
+    padding-top: 16px;
+    padding-bottom: 18px;
     gap: 6px 16px;
   }
   .juku-banner__en { display: none; }
@@ -3152,7 +3186,7 @@ html:not(.no-js) .fv__title:not(.is-inview) .fv__char { opacity: 0; }
   .fv__sound { top: calc(var(--header-h) + 4px); right: 16px; }
   .fv .circle-btn { animation: pulseRing 3.2s ease-out infinite; }
 
-  .juku-banner__inner { padding: 16px 0 18px; }
+  .juku-banner__inner { padding-top: 16px; padding-bottom: 18px; }
 
   .about__photo .ph--about img {
     will-change: auto;
