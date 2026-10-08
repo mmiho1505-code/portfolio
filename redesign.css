@@ -1124,3 +1124,321 @@ a.svc__circle:hover { background: #fff; color: var(--navy); }
 @media (prefers-reduced-motion: reduce) {
   .btn, .btn::after, .svc__circle, .gh__nav { transition: none; }
 }
+
+/* ==========================================================
+   8. Motion（動き）
+   ・script.js は、画面に入った .js-fade に .is-inview を付ける。ここではそれを合図に動かす
+   ・「.js-fade.mv」は合図を受けるだけの箱（自分は動かず、中身が順番に動く）
+   ・JavaScript が動かないとき（html.no-js）と、端末の「視差効果を減らす」設定のときは、
+     何も隠さず最初から全部表示する（この中の指定は効かない）
+   ・動きをやめたいときは、この「8. Motion」をまるごと消せば元に戻る
+   ========================================================== */
+:root {
+  --e-out: cubic-bezier(.22, 1, .36, 1);
+  --e-io: cubic-bezier(.65, 0, .35, 1);
+  --e-spring: cubic-bezier(.34, 1.45, .64, 1);
+}
+@property --sweep { syntax: "<angle>"; inherits: false; initial-value: 360deg; }
+.hc { display: inline-block; }
+.js-fade.mv { opacity: 1; transform: none; transition: none; }
+
+@keyframes mvFade { from { opacity: 0; } }
+@keyframes mvUp { from { opacity: 0; transform: translateY(22px); } }
+@keyframes mvLeft { from { opacity: 0; transform: translateX(-18px); } }
+@keyframes mvPop { from { opacity: 0; transform: scale(.3); } }
+@keyframes mvLine { from { transform: scaleX(0); } }
+@keyframes mvTrack { from { letter-spacing: .4em; } }
+@keyframes mvDraw { from { stroke-dasharray: 1; stroke-dashoffset: 1; } to { stroke-dasharray: 1; stroke-dashoffset: 0; } }
+@keyframes mvSweep { from { --sweep: 0deg; } to { --sweep: 360deg; } }
+@keyframes mvWipeR { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes mvWipeL { from { clip-path: inset(0 0 0 100%); } to { clip-path: inset(0 0 0 0); } }
+@keyframes mvWipeDown { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes mvImgIn { from { scale: 1.22; } }
+@keyframes mvUnderline { from { background-size: 0% 100%; } to { background-size: 100% 100%; } }
+@keyframes mvChar { from { opacity: 0; transform: translateY(.7em) rotate(5deg); filter: blur(8px); } to { opacity: 1; transform: none; filter: blur(0); } }
+@keyframes mvKey { 40% { transform: translateY(-.12em) scale(1.12); color: var(--accent-bright); } }
+@keyframes mvHeroZoom { from { transform: scale(1.16); } }
+@keyframes mvHeaderIn { from { opacity: 0; transform: translateY(-100%); } }
+@keyframes mvHexIn { from { opacity: 0; transform: translateY(30px) scale(.82); } }
+@keyframes mvOpIn { from { opacity: 0; transform: scale(.2) rotate(-90deg); } }
+@keyframes mvFloat { 50% { translate: 0 -6px; } }
+@keyframes mvShine { 0% { transform: translateX(-220%) skewX(-18deg); } 18%, 100% { transform: translateX(420%) skewX(-18deg); } }
+@keyframes mvNudgeR { 50% { translate: 3px 0; } }
+@keyframes mvNudgeUp { 50% { translate: 0 -4px; } }
+@keyframes mvProgress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes mvDrift { from { translate: 56px 0; } to { translate: -56px 0; } }
+@keyframes mvParallax { from { translate: 0 -5%; } to { translate: 0 5%; } }
+
+@media (prefers-reduced-motion: no-preference) {
+
+  /* ---------- ヘッダー：トップページだけ、上からすっと降りてくる ---------- */
+  body:has(.hero) .header.gh { animation: mvHeaderIn .9s var(--e-out) .1s backwards; }
+
+  /* ---------- 1. Hero ---------- */
+  /* 背景：少し寄った状態から、ゆっくり引く */
+  .hero .fv__bg img,
+  .hero .fv__video { animation: mvHeroZoom 2.8s var(--e-out) backwards; }
+
+  /* 見出し：1文字ずつ、下からにじむように現れる。最後に「数字」だけ小さく弾む */
+  html:not(.no-js) .hero .hero__title.js-fade { opacity: 1; transform: none; transition: none; }
+  html:not(.no-js) .hero__title:not(.is-inview) .hc { opacity: 0; }
+  .hero__title.is-inview .hc {
+    animation: mvChar 1s var(--e-out) backwards;
+    animation-delay: calc(var(--i) * 55ms + 200ms);
+  }
+  .hero__title.is-inview .hc--key {
+    animation: mvChar 1s var(--e-out) backwards, mvKey 1s var(--e-out);
+    animation-delay: calc(var(--i) * 55ms + 200ms), calc(var(--i) * 70ms + 1.45s);
+  }
+
+  /* 見出しに続いて、英字 → 線 → 一文 → ボタン → 社長塾 → 名前 の順に出す */
+  html:not(.no-js) .hero .js-fade:not(.is-inview) { transform: translateY(18px); }
+  .hero .hero__en { transition: opacity 1.1s ease .75s; }
+  html:not(.no-js) .hero .hero__en:not(.is-inview) { transform: none; }
+  .hero .hero__en.is-inview { animation: mvTrack 1.8s var(--e-out) .75s backwards; }
+  .hero .hero__en.is-inview::after { animation: mvLine .9s var(--e-out) 1.2s backwards; }
+  .hero .hero__lead { transition-delay: 1s; }
+  html:not(.no-js) .hero .hero__actions.js-fade { opacity: 1; transform: none; transition: none; }
+  html:not(.no-js) .hero .hero__actions:not(.is-inview) .btn { opacity: 0; }
+  .hero .hero__actions.is-inview .btn { animation: mvUp .9s var(--e-out) backwards; animation-delay: 1.2s; }
+  .hero .hero__actions.is-inview .btn:nth-child(2) { animation-delay: 1.3s; }
+  .hero .hero__actions.is-inview .btn:nth-child(3) { animation-delay: 1.4s; }
+  .hero .hero__juku { transition-delay: 1.55s; }
+  .hero .hero__credit { transition-delay: 1.8s; }
+  html:not(.no-js) .hero .hero__credit:not(.is-inview) { transform: translateX(-14px); }
+
+  /* いちばん大事なボタンには、ときどき光が横切る */
+  .btn--accent { overflow: hidden; }
+  .btn--accent::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 34%;
+    background: linear-gradient(100deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, .34), rgba(255, 255, 255, 0));
+    transform: translateX(-220%) skewX(-18deg);
+    pointer-events: none;
+  }
+  .hero__actions .btn--accent::before,
+  .contact__actions .btn--accent::before { animation: mvShine 6.5s ease-in-out 3.2s infinite; }
+
+  /* ---------- 1b. Values：六角形が順に現れ、アイコンの線が描かれる ---------- */
+  html:not(.no-js) .values__row:not(.is-inview) > li { opacity: 0; }
+  .values__row.is-inview .hex { animation: mvHexIn 1s var(--e-spring) backwards, mvFloat 6s ease-in-out infinite; }
+  .values__row.is-inview .hex:nth-child(1) { animation-delay: .55s, 2s; }
+  .values__row.is-inview .hex:nth-child(3) { animation-delay: .8s, 2.9s; animation-duration: 1s, 6.8s; }
+  .values__row.is-inview .hex:nth-child(5) { animation-delay: 1.05s, 3.6s; animation-duration: 1s, 6.2s; }
+  .values__row.is-inview .values__op { animation: mvOpIn .7s var(--e-spring) backwards; }
+  .values__row.is-inview .values__op:nth-child(2) { animation-delay: .82s; }
+  .values__row.is-inview .values__op:nth-child(4) { animation-delay: 1.07s; }
+  .values__row.is-inview .hex__icon path { animation: mvDraw 1.2s var(--e-io) backwards; }
+  .values__row.is-inview .hex:nth-child(1) .hex__icon path { animation-delay: .85s; }
+  .values__row.is-inview .hex:nth-child(3) .hex__icon path { animation-delay: 1.1s; }
+  .values__row.is-inview .hex:nth-child(5) .hex__icon path { animation-delay: 1.35s; }
+  .values__row.is-inview .hex__icon path:nth-child(2) { animation-duration: 1.4s; }
+  .values__row.is-inview .hex__icon path:nth-child(3) { animation-duration: 1.6s; }
+  .values__free.is-inview .values__badge { animation: mvPop .6s var(--e-spring) .55s backwards; }
+
+  /* ---------- 1c. Facts：左から帯が開き、数字が順に上がってくる ---------- */
+  /* 待っている間は、線と中身を消しておく（箱そのものを切り抜くと「画面に入った」と判定されなくなるため） */
+  html:not(.no-js) .facts.js-fade:not(.is-inview) { border-color: transparent; }
+  html:not(.no-js) .facts.js-fade:not(.is-inview) .fact { opacity: 0; }
+  .facts.is-inview { animation: mvWipeR 1.2s var(--e-io) backwards; }
+  .facts.is-inview .fact { animation: mvUp .9s var(--e-out) backwards; animation-delay: .25s; }
+  .facts.is-inview .fact:nth-child(2) { animation-delay: .4s; }
+  .facts.is-inview .fact:nth-child(3) { animation-delay: .55s; }
+
+  /* ---------- 見出し共通：下の線が伸び、英字があとから出る（トップは字間も締まる） ---------- */
+  .section-head.is-inview .section-head__ja::after,
+  .head.is-inview .head__ja::after,
+  .works__hero.is-inview h2::after { animation: mvLine .9s var(--e-out) .45s backwards; }
+  .head--left.is-inview .head__ja::after,
+  .contact .section-head.is-inview .section-head__ja::after { transform-origin: 0 50%; }
+  .section-head.is-inview .section-head__en,
+  .head.is-inview .head__en,
+  .works__hero.is-inview .works__en { animation: mvFade 1.1s ease .5s backwards; }
+  body:has(.hero) .section-head.is-inview .section-head__ja,
+  body:has(.hero) .head.is-inview .head__ja,
+  body:has(.hero) .works__hero.is-inview h2 { animation: mvTrack 1.5s var(--e-out) backwards; }
+
+  /* ---------- 2. About：写真は上から幕が開き、文章は横から入る ---------- */
+  html:not(.no-js) .about__photo.js-fade,
+  html:not(.no-js) .about__scene.js-fade,
+  html:not(.no-js) .about__table-wrap.js-fade,
+  html:not(.no-js) .philosophy__inner.js-fade,
+  html:not(.no-js) .study__photo.js-fade,
+  html:not(.no-js) .contact__visual.js-fade { opacity: 1; transform: none; transition: none; }
+
+  html:not(.no-js) .about__photo:not(.is-inview) .ph--about { clip-path: inset(0 0 100% 0); }
+  html:not(.no-js) .about__photo:not(.is-inview) .about__photo-caption { opacity: 0; }
+  .about__photo.is-inview .ph--about { animation: mvWipeDown 1.3s var(--e-io) backwards; }
+  .about__photo.is-inview .ph--about img { animation: mvImgIn 1.9s var(--e-out) backwards; }
+  .about__photo.is-inview .about__photo-caption { animation: mvFade .9s ease 1s backwards; }
+  .about__message.is-inview .about__em { background-repeat: no-repeat; animation: mvUnderline 1.1s var(--e-out) 1s backwards; }
+
+  html:not(.no-js) .about__table-wrap:not(.is-inview) .profile-table__row,
+  html:not(.no-js) .about__table-wrap:not(.is-inview) .about__table-label { opacity: 0; }
+  .about__table-wrap.is-inview .about__table-label { animation: mvFade 1s ease backwards; }
+  .about__table-wrap.is-inview .profile-table__row { animation: mvUp .8s var(--e-out) backwards; }
+  .about__table-wrap.is-inview .profile-table__row:nth-child(2) { animation-delay: 70ms; }
+  .about__table-wrap.is-inview .profile-table__row:nth-child(3) { animation-delay: 140ms; }
+  .about__table-wrap.is-inview .profile-table__row:nth-child(4) { animation-delay: 210ms; }
+  .about__table-wrap.is-inview .profile-table__row:nth-child(5) { animation-delay: 280ms; }
+  .about__table-wrap.is-inview .profile-table__row:nth-child(6) { animation-delay: 350ms; }
+  .about__table-wrap.is-inview .profile-table__row:nth-child(7) { animation-delay: 420ms; }
+
+  html:not(.no-js) .about__scene:not(.is-inview) > * { opacity: 0; }
+  .about__scene.is-inview { animation: mvWipeR 1.2s var(--e-io) backwards; animation-delay: var(--stagger, 0ms); }
+  .about__scene.is-inview img { animation: mvImgIn 1.9s var(--e-out) backwards; animation-delay: var(--stagger, 0ms); }
+
+  /* 経営理念：縦の線から開き、2行が順に出る */
+  html:not(.no-js) .philosophy__inner:not(.is-inview) > *,
+  html:not(.no-js) .philosophy__inner:not(.is-inview) blockquote p { opacity: 0; }
+  .philosophy__inner.is-inview .philosophy__en { animation: mvUp .9s var(--e-out) backwards; }
+  .philosophy__inner.is-inview .philosophy__label { animation: mvUp .9s var(--e-out) .1s backwards; }
+  .philosophy__inner.is-inview blockquote { animation: mvWipeDown 1.1s var(--e-io) .15s backwards; }
+  .philosophy__inner.is-inview blockquote p { animation: mvUp 1s var(--e-out) .35s backwards; }
+  .philosophy__inner.is-inview blockquote p + p { animation-delay: .65s; }
+
+  /* ---------- 3. Services：丸の線がぐるっと描かれ、アイコンの線が描かれる ---------- */
+  html:not(.no-js) .svc__circle { border-color: transparent; }
+  html:not(.no-js) .svc__circle::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    -webkit-mask: conic-gradient(#000 var(--sweep), transparent 0);
+            mask: conic-gradient(#000 var(--sweep), transparent 0);
+    pointer-events: none;
+  }
+  .svc__item.is-inview .svc__circle::before { animation: mvSweep 1.4s var(--e-io) backwards; animation-delay: calc(var(--stagger, 0ms) + .15s); }
+  .svc__item.is-inview .svc__icon path { animation: mvDraw 1.3s var(--e-io) backwards; animation-delay: calc(var(--stagger, 0ms) + .5s); }
+  .svc__item.is-inview .svc__badge { animation: mvPop .6s var(--e-spring) backwards; animation-delay: calc(var(--stagger, 0ms) + 1.2s); }
+
+  /* ---------- 3c. 社長塾：見出しの下の線が伸びる ---------- */
+  .academy__title.is-inview::after { animation: mvLine .9s var(--e-out) .55s backwards; }
+
+  /* ---------- 3b. 黒字化本気塾 / 6. Contact：写真は横から幕が開く ---------- */
+  html:not(.no-js) .study__photo:not(.is-inview) .ph { clip-path: inset(0 100% 0 0); }
+  .study__photo.is-inview .ph { animation: mvWipeR 1.3s var(--e-io) backwards; }
+  .study__photo.is-inview .ph img { animation: mvImgIn 1.9s var(--e-out) backwards; }
+  .study__body.is-inview .study__meta > div { animation: mvUp .8s var(--e-out) .35s backwards; }
+  .study__body.is-inview .study__meta > div:nth-child(2) { animation-delay: .43s; }
+  .study__body.is-inview .study__meta > div:nth-child(3) { animation-delay: .51s; }
+  .study__body.is-inview .study__meta > div:nth-child(4) { animation-delay: .59s; }
+  html:not(.no-js) .contact__visual:not(.is-inview) .ph { clip-path: inset(0 0 0 100%); }
+  .contact__visual.is-inview .ph { animation: mvWipeL 1.3s var(--e-io) backwards; }
+  .contact__visual.is-inview .ph img { animation: mvImgIn 1.9s var(--e-out) backwards; }
+
+  /* ---------- 5. FAQ：答えは、ふわっと開く（対応しているブラウザのみ） ---------- */
+  .faq__a { transition: opacity .5s ease, translate .5s var(--e-out); }
+  @starting-style {
+    .faq__a:not([hidden]) { opacity: 0; translate: 0 -10px; }
+  }
+
+  /* ---------- ページトップへ戻るボタン ---------- */
+  .pagetop:hover svg { animation: mvNudgeUp .7s ease infinite; }
+}
+
+/* --- パソコン幅だけの動き --- */
+@media (prefers-reduced-motion: no-preference) and (min-width: 769px) {
+  html:not(.no-js) .about__message.js-fade:not(.is-inview),
+  html:not(.no-js) .study__body.js-fade:not(.is-inview) { transform: translateX(20px); }   /* 画面の右にはみ出さない幅まで */
+
+  /* 支援事例：写真は少し寄った状態から引き、「Case 01」は横から入る */
+  .works__grid > li.is-inview .ph img { animation: mvImgIn 1.8s var(--e-out) backwards; animation-delay: var(--stagger, 0ms); }
+  .works__grid > li.is-inview .work-card__case { animation: mvLeft .9s var(--e-out) backwards; animation-delay: calc(var(--stagger, 0ms) + .4s); }
+}
+
+@media (prefers-reduced-motion: no-preference) and (min-width: 1280px) {
+  html:not(.no-js) .about__message.js-fade:not(.is-inview),
+  html:not(.no-js) .study__body.js-fade:not(.is-inview) { transform: translateX(44px); }
+}
+
+/* --- スマホ幅 --- */
+@media (prefers-reduced-motion: no-preference) and (max-width: 768px) {
+  /* スマホでは六角形の下の文も最初の画面に入るので、六角形のあとに出す */
+  .values__text .js-fade { transition-delay: .8s; }
+  .values__text .js-fade + .js-fade { transition-delay: .9s; }
+  .values__text .js-fade + .js-fade + .js-fade { transition-delay: 1s; }
+  html:not(.no-js) .svc__circle::before { inset: -1.5px; border-width: 1.5px; }
+}
+
+/* --- メニュー（1279px以下）：開くと、項目が上から順に出る --- */
+@media (prefers-reduced-motion: no-preference) and (max-width: 1279px) {
+  .gh__nav.is-open .gh__list li,
+  .gh__nav.is-open .gh__bar > * { animation: mvUp .5s var(--e-out) backwards; }
+  .gh__nav.is-open .gh__list li:nth-child(1) { animation-delay: 60ms; }
+  .gh__nav.is-open .gh__list li:nth-child(2) { animation-delay: 95ms; }
+  .gh__nav.is-open .gh__list li:nth-child(3) { animation-delay: 130ms; }
+  .gh__nav.is-open .gh__list li:nth-child(4) { animation-delay: 165ms; }
+  .gh__nav.is-open .gh__list li:nth-child(5) { animation-delay: 200ms; }
+  .gh__nav.is-open .gh__list li:nth-child(6) { animation-delay: 235ms; }
+  .gh__nav.is-open .gh__list li:nth-child(7) { animation-delay: 270ms; }
+  .gh__nav.is-open .gh__list li:nth-child(8) { animation-delay: 305ms; }
+  .gh__nav.is-open .gh__list li:nth-child(9) { animation-delay: 340ms; }
+  .gh__nav.is-open .gh__list li:nth-child(10) { animation-delay: 375ms; }
+  .gh__nav.is-open .gh__list li:nth-child(11) { animation-delay: 410ms; }
+  .gh__nav.is-open .gh__bar > * { animation-delay: 460ms; }
+}
+
+/* --- マウスを乗せたときの動き（マウスのある端末だけ） --- */
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (min-width: 769px) {
+  /* 白抜きのボタン：白が左から流れ込む */
+  .btn.btn--ghost {
+    background: linear-gradient(#fff, #fff) no-repeat 0 0 / 0% 100%;
+    transition: background-size .45s var(--e-out), color .3s ease, border-color .3s ease;
+  }
+  .btn.btn--ghost:hover { background: linear-gradient(#fff, #fff) no-repeat 0 0 / 100% 100%; }
+  /* 緑のボタン：乗せると光が横切る */
+  .btn--accent:hover::before { animation: none; transform: translateX(420%) skewX(-18deg); transition: transform .7s ease; }
+  /* 押せる丸：少し浮き、矢印が動く */
+  a.svc__circle { transition: background .3s ease, color .3s ease, translate .45s var(--e-out); }
+  a.svc__circle:hover { translate: 0 -6px; }
+  a.svc__circle:hover .svc__go { animation: mvNudgeR .8s ease infinite; }
+}
+
+/* --- スクロールに合わせた動き（対応しているブラウザのみ。非対応なら何も起きない） --- */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    /* ヘッダーの下の細い線：ページのどこまで読んだかを示す */
+    .header.gh::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: -2px;
+      left: 0;
+      height: 2px;
+      background: var(--accent-bright);
+      transform-origin: 0 50%;
+      pointer-events: none;
+      animation: mvProgress linear both;
+      animation-timeline: scroll(root block);
+    }
+    /* うしろの大きな英字は、スクロールに合わせて横へ流れる */
+    .philosophy__watermark,
+    .academy__watermark,
+    .works__intro::after,
+    .contact__signature {
+      animation: mvDrift linear both;
+      animation-timeline: view();
+    }
+    /* 「できること」の背景写真は、少し遅れてついてくる */
+    .svc__bg img {
+      scale: 1.12;
+      animation: mvParallax linear both;
+      animation-timeline: view();
+    }
+  }
+}
+@media (prefers-reduced-motion: no-preference) and (min-width: 769px) {
+  @supports (animation-timeline: scroll()) {
+    .academy--teaser .academy__bg img {
+      scale: 1.12;
+      animation: mvParallax linear both;
+      animation-timeline: view();
+    }
+  }
+}

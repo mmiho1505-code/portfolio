@@ -15,7 +15,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Old+Mincho:wght@500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css?v=juku-sp1">
   <!-- デザイン案：見た目を差し替えるスタイル -->
-  <link rel="stylesheet" href="./redesign.css?v=6">
+  <link rel="stylesheet" href="./redesign.css?v=7">
+  <script>
+    /* 動きの下準備：最初から「JavaScriptあり」の表示にして、文字が一度見えてから消えるのを防ぐ。
+       script.js が読み込めない・途中で止まったときは、隠している要素をすべて表示に戻す */
+    (function (h) {
+      h.classList.remove('no-js');
+      var show = function () { h.classList.add('no-js'); };
+      addEventListener('error', function (e) {
+        var t = e.target || {};
+        if (/script\.js/.test(t.src || e.filename || '')) show();
+      }, true);
+      setTimeout(function () {
+        if (document.querySelector('.js-fade') && !document.querySelector('.is-inview')) show();
+      }, 6000);
+    })(document.documentElement);
+  </script>
 </head>
 <body class="page-apply">
 
@@ -176,13 +191,13 @@
   <!-- ===== 7. Footer（デザイン案：案内と連絡先つき） ===== -->
   <footer class="footer gf">
     <div class="gf__inner container">
-      <div class="gf__brand">
+      <div class="gf__brand js-fade">
         <a class="footer__logo logo" href="./index.html">
           <img class="logo__img" src="./images/logo.png" alt="株式会社宮田財務" width="1024" height="204">
         </a>
         <address class="gf__address">〒310-0066 茨城県水戸市金町3-4-30-103<br>TEL&amp;FAX <a href="tel:0292791623">029-279-1623</a></address>
       </div>
-      <nav class="gf__nav" aria-label="フッターナビゲーション">
+      <nav class="gf__nav js-fade" aria-label="フッターナビゲーション">
         <ul>
           <li><a href="./index.html#about">自己紹介</a></li>
           <li><a href="./status.html">中小企業の現状</a></li>
