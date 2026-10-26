@@ -1442,3 +1442,12 @@ a.svc__circle:hover { background: #fff; color: var(--navy); }
     }
   }
 }
+
+/* ---------- 自己紹介：代表からのメッセージ動画 ---------- */
+.about__movie { max-width: 760px; margin: 40px auto 0; }
+.about__movie video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #000; }
+.about__movie figcaption { margin-top: 10px; font-size: .875rem; letter-spacing: .08em; color: var(--color-text-sub); text-align: center; }
+@media (max-width: 768px) {
+  .about__movie { margin: 24px calc(var(--gutter) * -1) 0; }
+  .about__movie figcaption { font-size: .8125rem; }
+}
