@@ -20,7 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Old+Mincho:wght@500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css?v=juku-sp1">
   <!-- デザイン案：見た目を差し替えるスタイル -->
-  <link rel="stylesheet" href="./redesign.css?v=8">
+  <link rel="stylesheet" href="./redesign.css?v=9">
   <script>
     /* 動きの下準備：最初から「JavaScriptあり」の表示にして、文字が一度見えてから消えるのを防ぐ。
        script.js が読み込めない・途中で止まったときは、隠している要素をすべて表示に戻す */
@@ -177,13 +177,6 @@
             <div class="profile-table__row"><dt>Seminar</dt><dd>経営者向け勉強会「<a href="#study">黒字化本気塾</a>」、半年間の「<a href="./academy.html">社長塾</a>」講師</dd></div>
           </dl>
         </div>
-
-        <figure class="about__movie js-fade">
-          <video controls playsinline preload="none" poster="./images/message-poster.jpg" width="854" height="480">
-            <source src="./videos/message.mp4" type="video/mp4">
-          </video>
-          <figcaption>代表からのメッセージ（約30秒）</figcaption>
-        </figure>
 
         <div class="about__scenes" aria-label="活動の様子">
           <figure class="about__scene about__scene--team js-fade">
@@ -452,6 +445,17 @@
             <p class="update-col__more"><a class="text-link" href="https://www.youtube.com/@%E5%AE%AE%E7%94%B0%E4%B9%85%E9%9B%84" target="_blank" rel="noopener">チャンネルを見る<span class="u-visually-hidden">（新しいタブで開きます）</span></a></p>
           </article>
         </div>
+      </div>
+    </section>
+
+    <!-- ===== 5c. 動画 ===== -->
+    <section class="movie" aria-label="宮田久雄の動画">
+      <div class="container">
+        <figure class="movie__frame js-fade">
+          <video controls playsinline preload="none" poster="./images/message-poster.jpg" width="854" height="480">
+            <source src="./videos/message.mp4" type="video/mp4">
+          </video>
+        </figure>
       </div>
     </section>
 
